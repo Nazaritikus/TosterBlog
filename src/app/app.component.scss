@@ -1,0 +1,10 @@
+.validation{
+  position: relative;
+  color: red;
+
+  .fieldValidation{
+    position: absolute;
+    top: -24px;
+    left: 14px;
+  }
+}

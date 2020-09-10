@@ -1,0 +1,62 @@
+.section{
+  border: 1px solid grey;
+  margin: 5px;
+  box-sizing: border-box;
+  box-shadow: 2px 2px 5px 0 rgba(0,0,0,0.3);
+  background-color: rgba(222,222,222,0.5);
+  border-radius: 10px;
+}
+
+.mainPart{
+  display: flex;
+  justify-content: space-between;
+
+  .numbers{
+    max-width: 200px;
+    padding: 10px;
+    align-self: flex-start;
+  }
+
+  .subscriptions{
+    min-width: 200px;
+    padding: 10px;
+    align-self: flex-start;
+  }
+
+  .posts{
+    width: 100%;
+    padding: 10px;
+
+    .addNew{
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+
+      .addNewText{
+        font-size: 1.3rem;
+        margin: 0;
+      }
+    }
+  }
+}
+
+.cover{
+  min-height: 250px;
+  position: relative;
+
+  .userProfile{
+    max-width: 150px;
+    height: 150px;
+    border: 1px solid grey;
+    border-radius: 50%;
+    position: absolute;
+    left: 10px;
+    bottom: -10px;
+    box-shadow: 3px 3px 5px 0 rgba(0,0,0,0.7);
+  }
+}
+
+.empty{
+  margin-top: 20px;
+  text-align: center;
+}

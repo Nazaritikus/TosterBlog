@@ -1,0 +1,16 @@
+<h1>{{post.title}}</h1>
+<button mat-icon-button [matMenuTriggerFor]="menu">
+  <mat-icon>more_vert</mat-icon>
+</button>
+
+<mat-menu #menu="matMenu">
+  <button mat-menu-item><span class="material-icons menuItem">create</span>Edit</button>
+  <button mat-menu-item><span class="material-icons">delete</span>Delete</button>
+</mat-menu>
+
+<quill-view-html [content]="post.body"></quill-view-html>
+<div class="postInfo">
+  <p>{{post.postOwner}}</p>
+  <p>{{post.date | date:'short'}}</p>
+</div>
+<hr>

@@ -1,0 +1,59 @@
+.userProfile{
+  background-color: rgba(222,222,222,0.5);
+  border-radius: 10px;
+  border: 1px solid rgba(192,192,192, 0.5);
+  box-shadow: 2px 2px 5px rgba(192,192,192, 0.5);
+
+  .title{
+    margin: 6px 10px;
+  }
+
+  .tabContent{
+    padding: 20px;
+
+    .field{
+      display: flex;
+      justify-content: space-between;
+      margin: 0 auto;
+      max-width: 350px;
+      align-items: center;
+
+      mat-form-field{
+        width: 200px;
+      }
+    }
+
+    .row{
+      display: flex;
+      justify-content: space-around;
+    }
+  }
+}
+
+.imagePage{
+  margin: 20px auto;
+  text-align: center;
+  display: flex;
+  justify-content: space-around;
+
+  button{
+    margin: 10px;
+  }
+
+  .imagePreview img{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+  }
+}
+
+.quill{
+  min-height: 100px;
+  max-width: 600px;
+  margin: 30px auto;
+
+  .saveAbout{
+    margin: 16px 0;
+    float: right;
+  }
+}

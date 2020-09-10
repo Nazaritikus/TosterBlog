@@ -1,0 +1,12 @@
+
+.numbers{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+
+  .number{
+    font-size: 2rem;
+    font-weight: bold;
+  }
+}

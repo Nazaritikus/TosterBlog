@@ -1,0 +1,36 @@
+
+<div class="smallInfo">
+
+  <div class="userInfo">
+    <img
+      [src]="user.photoURL ? user.photoURL : 'assets/welcome/acount.png'"
+      class="userAvatar"
+      alt="user Avatar">
+    <div class="columnFlex">
+      <p>{{user.name}}</p>
+      <p><span class="material-icons">location_on</span> {{user.city ? user.city : 'Mars'}}</p>
+    </div>
+  </div>
+
+  <div class="columnFlex">
+    <button
+      mat-raised-button
+      [routerLink]="['/client/userPage', user.localId]"
+    >View Profile</button>
+    <button
+      *ngIf="!subscribed; else unsubs"
+      mat-raised-button
+      color="primary"
+      (click)="subscribe(user.localId)"
+    >Subscribe</button>
+    <ng-template #unsubs>
+      <button
+        mat-raised-button
+        color="warn"
+        (click)="unsubscribe(user.localId)"
+      >Unsubscribe</button>
+    </ng-template>
+
+  </div>
+
+</div>
