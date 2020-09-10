@@ -35,7 +35,6 @@ export class SubscriptionManagerPageComponent implements OnInit, OnDestroy {
       this.subSub = this.userS.userSubscriptions$.subscribe((data: Subs[]) => {
         this.subscriptions = data
         this.mySubscriptions = data ? this.users.filter(user => data.some(element => user.localId === element.subscription)) : null
-        console.log(this.mySubscriptions)
       })
     })
   }

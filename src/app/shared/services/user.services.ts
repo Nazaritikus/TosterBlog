@@ -44,7 +44,7 @@ export class UserServices {
       }})
   }
 
-  getUserPosts(localId: string): Observable<any>{
+  getUserPosts(localId: string, current: boolean = true): Observable<Post[]>{
     return this.httpClient.get<Post[]>(`${environment.databaseURL}/Posts/${localId}.json`)
       .pipe(
         map((response: any[]) => {
@@ -53,7 +53,9 @@ export class UserServices {
             fbId: key,
           })) : null
         }),
-        tap(this.setMyPosts.bind(this)),
+        tap((data: Post[]) => {
+          current ? this.setMyPosts(data) : ''
+        }),
         catchError(this.handleError.bind(this))
       )
   }
@@ -115,6 +117,19 @@ export class UserServices {
       )
   }
 
+  updateClientPost(post: Post, fbPostId: string, localId: string){
+    return this.httpClient.patch(`${environment.databaseURL}/Posts/${localId}/${fbPostId}.json`, post)
+      .pipe(
+        map((response: any[]) => {
+          return response ? Object.keys(response).map(key => ({
+            ...response[key],
+            fbId: key,
+          })) : null
+        }),
+        tap(() => this.getUserPosts(localId).subscribe())
+      )
+  }
+
   createSubscription(subs: string, localId: string){
     return this.httpClient.post<string>(`${environment.databaseURL}/Subscriptions/${localId}.json`, {subscription: subs})
       .pipe(
@@ -139,6 +154,14 @@ export class UserServices {
     return this.httpClient.delete(`${environment.databaseURL}/Subscriptions/${localId}/${subsFbId}.json`)
       .pipe(
         tap(() => this.getSubscriptions(localId).subscribe()),
+        catchError(this.handleError.bind(this))
+      )
+  }
+
+  removePost(postFbId: string, localId: string){
+    return this.httpClient.delete(`${environment.databaseURL}/Posts/${localId}/${postFbId}.json`)
+      .pipe(
+        tap(() => this.getUserPosts(localId).subscribe()),
         catchError(this.handleError.bind(this))
       )
   }

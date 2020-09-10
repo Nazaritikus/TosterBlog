@@ -40,19 +40,13 @@ const routes: Routes = [
       {path: '', redirectTo: '/client/myPage' ,pathMatch: 'full'},
       {
           path: 'myPage',
-          component: MyPageComponent,
-          resolve: {
-              posts: MyPageResolver
-          }},
+          component: MyPageComponent},
       {path: 'homePage', component: HomePageComponent},
       {path: 'profile', component: ProfilePageComponent},
       {path: 'userPage/:localId', component: UserPageComponent},
       {
         path: 'subManager',
-        component: SubscriptionManagerPageComponent,
-        resolve: {
-          subs: SubscriptionResolver
-        }
+        component: SubscriptionManagerPageComponent
       }
     ]}
 ]

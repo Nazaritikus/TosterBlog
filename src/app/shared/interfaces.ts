@@ -49,6 +49,7 @@ export class Post {
   date: Date
   postOwner: string
   likes?: string[]
+  fbId?: string
   comments?: Comment[]
 }
 

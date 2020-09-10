@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {UserServices} from '../../shared/services/user.services';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
@@ -21,8 +21,8 @@ export class AddNewPostPageComponent implements OnInit, OnDestroy {
   createNewSub: Subscription
 
   constructor(
+    @Inject(MAT_DIALOG_DATA) public postData: Post,
     public dialogRef: MatDialogRef<AddNewPostPageComponent>,
-    //@Inject(MAT_DIALOG_DATA) public data: DialogData) {}
     private fb: FormBuilder,
     private userServices: UserServices
   ) { }
@@ -31,8 +31,8 @@ export class AddNewPostPageComponent implements OnInit, OnDestroy {
     this.localId  = localStorage.getItem('fb-user')
 
     this.addNew = this.fb.group({
-      title: ['', Validators.required],
-      text: ['', Validators.required]
+      title: [this.postData ? this.postData.title : '', Validators.required],
+      text: [this.postData ? this.postData.body : '', Validators.required]
     })
 
     this.currentSub = this.userServices.currentUser$.subscribe((curr: BlogUser) => {
@@ -50,12 +50,21 @@ export class AddNewPostPageComponent implements OnInit, OnDestroy {
       body: this.addNew.get('text').value
     }
 
-    this.createNewSub = this.userServices.createNewPost(newPost, this.localId).subscribe(() => {
-      this.loading = false
-      this.addNew.reset()
-    }, error => {
-      this.loading = false
-    })
+    if(this.postData){
+      this.createNewSub = this.userServices.updateClientPost(newPost, this.postData.fbId, this.localId).subscribe(() => {
+        this.loading = false
+        this.addNew.reset()
+      }, error => {
+        this.loading = false
+      })
+    } else {
+      this.createNewSub = this.userServices.createNewPost(newPost, this.localId).subscribe(() => {
+        this.loading = false
+        this.addNew.reset()
+      }, error => {
+        this.loading = false
+      })
+    }
   }
 
   ngOnDestroy(): void {

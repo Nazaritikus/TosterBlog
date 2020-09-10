@@ -37,6 +37,13 @@
     </section>
     <section class="subscriptions section">
       <h1>Subscriptions</h1>
+      <div
+        class="subUser"
+        *ngFor="let user of mySub">
+        <img
+          [src]="user.photoURL ? user.photoURL : 'assets/welcome/acount.png'">
+        <p>{{user.name}}</p>
+      </div>
     </section>
   </div>
 

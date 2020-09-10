@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {BlogUser, Post} from '../../shared/interfaces';
+import {BlogUser, Post, Subs} from '../../shared/interfaces';
 import {Subscription} from 'rxjs';
 import {UserServices} from '../../shared/services/user.services';
 import {MatDialog} from '@angular/material/dialog';
@@ -14,6 +14,7 @@ export class MyPageComponent implements OnInit, OnDestroy {
 
   current: BlogUser
   posts: Post[]
+  mySub: BlogUser[]
 
   currentSub: Subscription
   postsSub: Subscription
@@ -24,12 +25,14 @@ export class MyPageComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.currentSub = this.userServices.currentUser$.subscribe((data: BlogUser) => {
-      this.current = data
-    })
+    this.currentSub = this.userServices.currentUser$.subscribe((data: BlogUser) => this.current = data)
 
-    this.postsSub = this.userServices.myPosts$.subscribe((posts: Post[]) => {
-      this.posts = posts
+    this.postsSub = this.userServices.myPosts$.subscribe((posts: Post[]) => this.posts = posts)
+
+    this.userServices.userSubscriptions$.subscribe((subs: Subs[]) => {
+      this.userServices.getAllUsers().subscribe((users: BlogUser[]) => {
+        this.mySub = subs ? users.filter(user => subs.some(element => user.localId === element.subscription)) : null
+      })
     })
   }
 
