@@ -1,18 +1,20 @@
 import { NgModule } from '@angular/core';
-import {Routes, RouterModule, PreloadAllModules} from '@angular/router';
-import {CurrentResolver} from './shared/services/current.resolver';
-import {MyPageResolver} from './shared/services/myPageResolver';
-import {SubscriptionResolver} from './shared/services/subscription.resolver';
+import {RouterModule, Routes} from '@angular/router';
+import {CurrentUserResolver, MyPageResolver, SubscriptionResolver} from '@core/resolvers';
+import {AuthGuard} from '@core/guards/authGuard';
 
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./welcome/welcome.module').then(m => m.WelcomeModule)
-  },
+    loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule)
+  }
+  ,
   {
-    path: 'client', loadChildren: () => import('./clientSide/clientSide.module').then(m => m.ClientSideModule),
+    path: 'client',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./modules/client-layout/client-layout.module').then(m => m.ClientLayoutModule),
     resolve: {
-      user: CurrentResolver,
+      user: CurrentUserResolver,
       posts: MyPageResolver,
       subsc: SubscriptionResolver
     }
@@ -20,7 +22,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {preloadingStrategy: PreloadAllModules})],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

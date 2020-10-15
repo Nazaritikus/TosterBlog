@@ -1,0 +1,50 @@
+<div class="mainPage">
+
+  <section appBgControl class="cover section">
+    <img
+      [src]="current.photoURL ? current.photoURL : 'assets/images/acount.png'"
+      alt="user profile photo" class="userProfile">
+  </section>
+
+  <div class="mainPart">
+    <section class="numbers section">
+      <app-numbers></app-numbers>
+    </section>
+    <section class="posts section">
+      <div class="addNew">
+        <p class="addNewText">Would you like to add new one post?</p>
+        <button
+          mat-fab color="primary"
+          aria-label="Example icon button with a delete icon"
+          (click)="openAddNew()"
+        >
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+
+        <hr>
+      <div *ngIf="posts; else emptyPage">
+        <app-post-page *ngFor="let p of posts"
+          [post]="p">
+        </app-post-page>
+      </div>
+
+      <ng-template #emptyPage>
+        <p class="empty">Hey, c'mon, it's time to share your adventure! Click + to create new post!</p>
+      </ng-template>
+
+    </section>
+    <section class="subscriptions section">
+      <h1>Subscriptions</h1>
+      <div
+        class="subUser"
+        *ngFor="let user of mySub">
+        <img
+          [src]="user.photoURL ? user.photoURL : 'assets/images/acount.png'">
+        <p>{{user.name}}</p>
+      </div>
+    </section>
+  </div>
+
+</div>
+

@@ -1,4 +1,4 @@
-import {Environment} from '../app/shared/interfaces';
+import {Environment} from '@shared/interfaces';
 
 export const environment: Environment = {
   production: true,

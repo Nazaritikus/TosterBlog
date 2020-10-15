@@ -1,0 +1,59 @@
+<header class="header">
+    <button
+      mat-icon-button
+      class="menu"
+      (click)="sidenav.toggle()"
+    ><span class="material-icons">menu</span></button>
+    <img
+      class="logo"
+      src="../../../assets/images/hiking.png"
+      alt="hiking">
+    <div>
+      <div class="userData">
+        <div>{{current.name}}</div>
+        <button
+          mat-icon-button
+          [mat-menu-trigger-for]="profile"
+          class="profile">
+          <img
+            class="userProfile"
+            [src]="current.photoURL ? current.photoURL : 'assets/images/acount.png'"
+            alt="user profile"></button>
+      </div>
+    <mat-menu #profile="matMenu">
+      <button mat-menu-item [routerLink]="['profile']">User Profile</button>
+      <button mat-menu-item (click)="logout()">Logout</button>
+    </mat-menu>
+    </div>
+  </header>
+
+  <mat-sidenav-container class="sideContainer">
+    <mat-sidenav
+      #sidenav
+      mode="over"
+      class="sidenav"
+      [fixedInViewport]="true"
+      [fixedTopGap]="70">
+      <a [routerLink]="['/client/myPage']"
+        routerLinkActive="active"
+        class="sideItem"><span class="material-icons">web</span> My Page</a>
+      <a [routerLink]="['/client/homePage']"
+         routerLinkActive="active"
+         class="sideItem"><span class="material-icons">home</span> Home Page</a>
+      <a [routerLink]="['/client/profile']"
+         routerLinkActive="active"
+         class="sideItem"><span class="material-icons">account_circle</span> My Profile</a>
+      <a [routerLink]="['/client/subManager']"
+         routerLinkActive="active"
+         class="sideItem"><span class="material-icons">bookmarks</span> Subscriptions</a>
+      <a [routerLink]="['/client/settings']"
+         routerLinkActive="active"
+         class="sideItem"><span class="material-icons">settings</span> Settings</a>
+    </mat-sidenav>
+
+    <mat-sidenav-content class="main">
+      <section class="userContainer">
+        <router-outlet></router-outlet>
+      </section>
+    </mat-sidenav-content>
+  </mat-sidenav-container>

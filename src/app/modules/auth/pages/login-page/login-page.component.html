@@ -1,0 +1,75 @@
+<div class="contentBody">
+  <mat-card>
+    <div class="headerText">
+      <img src="../../../../../assets/images/hiking.png" alt="hiking logo">
+      <mat-card-title>Login</mat-card-title>
+    </div>
+    <mat-card-content>
+      <form
+        [formGroup]="form"
+        (ngSubmit)="submit()">
+        <mat-form-field appearance="fill">
+          <input
+            matInput
+            placeholder="example@example.com"
+            formControlName="email"
+            class="padLeft-2"
+            required>
+          <span class="material-icons iconPosition">face</span>
+        </mat-form-field>
+
+        <div
+          class="validation"
+          *ngIf="form.get('email').touched && form.get('email').invalid">
+          <small
+            [appValidator] ="form.get('email').errors.required"
+            message="Please fill the filed"
+            class="fieldValidation"></small>
+          <small
+            [appValidator]= "form.get('email').errors.email"
+            message="Please enter valid email address"
+            class="fieldValidation"></small>
+        </div>
+
+        <mat-form-field appearance="fill">
+          <input
+            matInput
+            [type]="hide ? 'password' : 'text'"
+            formControlName="password"
+            class="padLeft-2"
+            required>
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="hide = !hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <span class="material-icons iconPosition">lock_open</span>
+        </mat-form-field>
+
+        <div
+          class="validation"
+          *ngIf="form.get('password').touched && form.get('password').invalid">
+          <small
+            [appValidator]= "form.get('password').errors.required"
+            message="Please fill the filed"
+            class="fieldValidation"></small>
+          <small
+            [appValidator]= "form.get('password').errors.minlength"
+            message="Password should be at least 6 characters"
+            class="fieldValidation"></small>
+        </div>
+
+        <button
+          mat-raised-button
+          type="submit"
+          [disabled]="form.invalid || submitted"
+        >Login</button>
+
+        <div class="signUp">
+          <p>Not a member? <a [routerLink]="'/signUp'">Sign up now</a></p>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
