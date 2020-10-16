@@ -13,33 +13,34 @@ import {UserServices} from '@core/services';
 })
 export class SmallUserSectionComponent implements OnInit, OnDestroy {
 
-  @Input() user: BlogUser
-  @Input() subscribed: boolean = true
-  @Output() onSubscribe: EventEmitter<string> = new EventEmitter<string>()
-  @Output() onUnsubscribe: EventEmitter<string> = new EventEmitter<string>()
+  @Input() user: BlogUser;
+  @Input() subscribed = true;
+  @Output() subscribe: EventEmitter<string> = new EventEmitter<string>();
+  @Output() unsubscribe: EventEmitter<string> = new EventEmitter<string>();
 
-  current: BlogUser
-  currentSub: Subscription
+  current: BlogUser;
+  currentSub: Subscription;
 
   constructor(
     private userServices: UserServices
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
-    this.currentSub = this.userServices.currentUser$.subscribe((data: BlogUser) => this.current = data)
+    this.currentSub = this.userServices.currentUser$.subscribe((data: BlogUser) => this.current = data);
   }
 
-  subscribe(subToId: string) {
-    this.onSubscribe.emit(subToId)
+  subscribeTo(subToId: string) {
+    this.subscribe.emit(subToId);
   }
 
-  unsubscribe(unsubFrom: string) {
-    this.onUnsubscribe.emit(unsubFrom)
+  unsubscribeFrom(unsubFrom: string) {
+    this.unsubscribe.emit(unsubFrom);
   }
 
   ngOnDestroy(): void {
-    if(this.currentSub){
-      this.currentSub.unsubscribe()
+    if (this.currentSub) {
+      this.currentSub.unsubscribe();
     }
   }
 }

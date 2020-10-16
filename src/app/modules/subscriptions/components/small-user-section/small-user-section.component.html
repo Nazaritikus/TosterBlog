@@ -1,11 +1,10 @@
-
 <div class="smallInfo">
 
   <div class="userInfo">
     <img
       [src]="user.photoURL ? user.photoURL : 'assets/images/acount.png'"
-      class="userAvatar"
-      alt="user Avatar">
+      alt="user Avatar"
+      class="userAvatar">
     <div class="columnFlex">
       <p>{{user.name}}</p>
       <p><span class="material-icons">location_on</span> {{user.city ? user.city : 'Mars'}}</p>
@@ -14,21 +13,24 @@
 
   <div class="columnFlex">
     <button
-      mat-raised-button
       [routerLink]="['/client/userPage', user.localId]"
-    >View Profile</button>
-    <button
-      *ngIf="!subscribed; else unsubs"
       mat-raised-button
+    >View Profile
+    </button>
+    <button
+      (click)="subscribeTo(user.localId)"
+      *ngIf="!subscribed; else unsubs"
       color="primary"
-      (click)="subscribe(user.localId)"
-    >Subscribe</button>
+      mat-raised-button
+    >Subscribe
+    </button>
     <ng-template #unsubs>
       <button
-        mat-raised-button
+        (click)="unsubscribeFrom(user.localId)"
         color="warn"
-        (click)="unsubscribe(user.localId)"
-      >Unsubscribe</button>
+        mat-raised-button
+      >Unsubscribe
+      </button>
     </ng-template>
 
   </div>

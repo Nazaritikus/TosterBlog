@@ -6,7 +6,7 @@ import {Observable, throwError} from 'rxjs';
 import {catchError, switchMap, tap} from 'rxjs/operators';
 
 import {ERROR_MAP, STORAGE_ITEMS} from '@shared/constants';
-import {LoginData, LoginResp, BlogUser} from '@shared/interfaces';
+import {BlogUser, LoginData, LoginResp} from '@shared/interfaces';
 import {environment} from '../../../environments/environment.prod';
 import {DialogMessagesComponent} from '@shared/components/dialog-messages/dialog-messages.component';
 

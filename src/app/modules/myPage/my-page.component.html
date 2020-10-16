@@ -14,18 +14,18 @@
       <div class="addNew">
         <p class="addNewText">Would you like to add new one post?</p>
         <button
-          mat-fab color="primary"
-          aria-label="Example icon button with a delete icon"
-          (click)="openAddNew()"
+          (click)="openAddNew()" aria-label="Example icon button with a delete icon"
+          color="primary"
+          mat-fab
         >
           <mat-icon>add</mat-icon>
         </button>
       </div>
 
-        <hr>
+      <hr>
       <div *ngIf="posts; else emptyPage">
         <app-post-page *ngFor="let p of posts"
-          [post]="p">
+                       [post]="p">
         </app-post-page>
       </div>
 
@@ -37,8 +37,8 @@
     <section class="subscriptions section">
       <h1>Subscriptions</h1>
       <div
-        class="subUser"
-        *ngFor="let user of mySub">
+        *ngFor="let user of mySub"
+        class="subUser">
         <img
           [src]="user.photoURL ? user.photoURL : 'assets/images/acount.png'">
         <p>{{user.name}}</p>

@@ -7,7 +7,7 @@ import {UserServices} from '@core/services';
 import {STORAGE_ITEMS} from '@shared/constants';
 
 @Injectable({providedIn: 'root'})
-export class CurrentUserResolver implements Resolve<fBUser>{
+export class CurrentUserResolver implements Resolve<fBUser> {
 
   constructor(private userServices: UserServices) {
   }

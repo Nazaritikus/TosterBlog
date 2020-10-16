@@ -5,7 +5,7 @@ import {Observable} from 'rxjs';
 import {Subs} from '@shared/interfaces';
 
 @Injectable({providedIn: 'root'})
-export class SubscriptionResolver implements Resolve<Subs[]>{
+export class SubscriptionResolver implements Resolve<Subs[]> {
 
   constructor(private userServices: UserServices) {
   }

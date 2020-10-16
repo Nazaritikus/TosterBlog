@@ -12,28 +12,29 @@ import {Subscription} from 'rxjs';
 })
 export class ClientLayoutComponent implements OnInit, OnDestroy {
 
-  current: BlogUser
-  currentSub: Subscription
+  current: BlogUser;
+  currentSub: Subscription;
 
   constructor(
     private auth: AuthServices,
     private userServices: UserServices,
     private activateRoute: ActivatedRoute,
     private router: Router
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     this.currentSub = this.userServices.currentUser$.subscribe((data: BlogUser) => {
-      this.current = data
-    })
+      this.current = data;
+    });
   }
 
-  logout(){
-    this.auth.logOut()
-    this.router.navigate(['/'])
+  logout() {
+    this.auth.logOut();
+    this.router.navigate(['/']);
   }
 
   ngOnDestroy(): void {
-    this.currentSub.unsubscribe()
+    this.currentSub.unsubscribe();
   }
 }

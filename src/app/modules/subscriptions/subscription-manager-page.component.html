@@ -2,40 +2,40 @@
   <mat-tab label="All Users">
 
     <mat-form-field
-      class="searchField"
-      appearance="fill">
+      appearance="fill"
+      class="searchField">
       <mat-label>Input</mat-label>
-      <input matInput #allUsersSearch>
+      <input #allUsersSearch matInput>
       <span
-        matPrefix
-        class="material-icons">search</span>
+        class="material-icons"
+        matPrefix>search</span>
     </mat-form-field>
 
     <app-small-user-section
+      (subscribe)="subscribe($event)"
+      (unsubscribe)="unsubscribe($event)"
       *ngFor="let user of users | FilterPipe:allUsersSearch.value"
-      [user]="user"
       [subscribed]="isSubscribed(user)"
-      (onSubscribe)="subscribe($event)"
-      (onUnsubscribe)="unsubscribe($event)"
+      [user]="user"
     >
     </app-small-user-section>
 
   </mat-tab>
   <mat-tab label="My Subscriptions">
     <mat-form-field
-      class="searchField"
-      appearance="fill">
+      appearance="fill"
+      class="searchField">
       <mat-label>Input</mat-label>
-      <input matInput #subscSearch>
+      <input #subscSearch matInput>
       <span
-        matPrefix
-        class="material-icons">search</span>
+        class="material-icons"
+        matPrefix>search</span>
     </mat-form-field>
 
     <app-small-user-section
+      (unsubscribe)="unsubscribe($event)"
       *ngFor="let user of mySubscriptions | FilterPipe:subscSearch.value"
       [user]="user"
-      (onUnsubscribe)="unsubscribe($event)"
     >
     </app-small-user-section>
   </mat-tab>

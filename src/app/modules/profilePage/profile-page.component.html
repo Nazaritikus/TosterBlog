@@ -5,151 +5,159 @@
       <div class="tabContent">
         <form [formGroup]="mainInfo">
 
-      <div class="field">
-        <label>First Name</label>
-        <mat-form-field>
-          <input
-            formControlName="firstName"
-            matInput
-            required>
-        </mat-form-field>
+          <div class="field">
+            <label>First Name</label>
+            <mat-form-field>
+              <input
+                formControlName="firstName"
+                matInput
+                required>
+            </mat-form-field>
+          </div>
+          <div class="field">
+            <label>Last Name</label>
+            <mat-form-field>
+              <input
+                formControlName="lastName"
+                matInput
+                required>
+            </mat-form-field>
+          </div>
+          <div class="field">
+            <label>Your Country</label>
+            <mat-form-field appearance="fill">
+              <mat-select formControlName="country">
+                <mat-option
+                  *ngFor="let country of countries"
+                  [value]="country.value">
+                  {{country.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="field">
+            <label>City</label>
+            <mat-form-field>
+              <input
+                formControlName="city"
+                matInput>
+            </mat-form-field>
+          </div>
+          <div class="field">
+            <label>Address</label>
+            <mat-form-field>
+              <input
+                formControlName="address"
+                matInput>
+            </mat-form-field>
+          </div>
+          <div class="field">
+            <label>Date of Birth</label>
+            <mat-form-field appearance="fill">
+              <input
+                [matDatepicker]="picker"
+                formControlName="date"
+                matInput>
+              <mat-datepicker-toggle
+                [for]="picker"
+                matSuffix
+              ></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <button
+              (click)="activateEdit()"
+              color="primary"
+              mat-raised-button
+              type="button"
+            >{{buttonText}}</button>
+            <button
+              (click)="updateUserMainInfo()"
+              [disabled]="mainInfo.invalid || editMode"
+              color="accent"
+              mat-raised-button
+              type="submit"
+            >Save
+            </button>
+          </div>
+        </form>
       </div>
-      <div class="field">
-        <label>Last Name</label>
-        <mat-form-field>
-          <input
-            formControlName="lastName"
-            matInput
-            required>
-        </mat-form-field>
-      </div>
-      <div class="field">
-        <label>Your Country</label>
-        <mat-form-field appearance="fill">
-          <mat-select formControlName="country">
-            <mat-option
-              *ngFor="let country of countries"
-              [value]="country.value">
-              {{country.viewValue}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-      <div class="field">
-        <label>City</label>
-        <mat-form-field>
-          <input
-            formControlName="city"
-            matInput>
-        </mat-form-field>
-      </div>
-      <div class="field">
-        <label>Address</label>
-        <mat-form-field>
-          <input
-            formControlName="address"
-            matInput>
-        </mat-form-field>
-      </div>
-      <div class="field">
-        <label>Date of Birth</label>
-        <mat-form-field appearance="fill">
-          <input
-            [matDatepicker]="picker"
-            formControlName="date"
-            matInput>
-          <mat-datepicker-toggle
-            [for]="picker"
-            matSuffix
-          ></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
-      </div>
-      <div class="row">
-        <button
-          mat-raised-button
-          color="primary"
-          (click)="activateEdit()"
-          type="button"
-        >{{buttonText}}</button>
-        <button
-          mat-raised-button
-          color="accent"
-          (click)="updateUserMainInfo()"
-          [disabled]="mainInfo.invalid || editMode"
-          type="submit"
-        >Save</button>
-      </div>
-      </form>
-</div>
-</mat-tab>
+    </mat-tab>
 
-<mat-tab label="Cover and Main photo">
-  <div class="imagePage">
-    <div class="mainImage">
-      <h1>Main Photo</h1>
-        <div class="imagePreview">
-          <img [src]="profilePhoto ? profilePhoto : 'assets/images/acount.png'" alt="preview of image" (click)="mainUploader.click()">
-        </div>
+    <mat-tab label="Cover and Main photo">
+      <div class="imagePage">
+        <div class="mainImage">
+          <h1>Main Photo</h1>
+          <div class="imagePreview">
+            <img (click)="mainUploader.click()" [src]="profilePhoto ? profilePhoto : 'assets/images/acount.png'"
+                 alt="preview of image">
+          </div>
           <input
-            style="display: none"
             #mainUploader
-            type="file"
-            id="mainFile"
+            (change)="onFileSelect($event)"
             accept="image/*"
-            (change)="onFileSelect($event)">
-      <button
-        mat-raised-button
-        color="primary"
-        (click)="mainUploader.click()"
-      >Choose New</button>
-      <button
-        mat-raised-button
-        color="primary"
-        [disabled]="!mainFileToUpload"
-        (click)="updateUserPhoto(true)"
-      >Upload New</button>
-    </div>
+            id="mainFile"
+            style="display: none"
+            type="file">
+          <button
+            (click)="mainUploader.click()"
+            color="primary"
+            mat-raised-button
+          >Choose New
+          </button>
+          <button
+            (click)="updateUserPhoto(true)"
+            [disabled]="!mainFileToUpload"
+            color="primary"
+            mat-raised-button
+          >Upload New
+          </button>
+        </div>
 
-    <div class="bgImage">
-      <h1>Cover Photo</h1>
-      <div class="imagePreview">
-        <img [src]="bgPhoto ? bgPhoto : 'assets/images/acount.png'" alt="preview of image" (click)="secondUploader.click()">
+        <div class="bgImage">
+          <h1>Cover Photo</h1>
+          <div class="imagePreview">
+            <img (click)="secondUploader.click()" [src]="bgPhoto ? bgPhoto : 'assets/images/acount.png'"
+                 alt="preview of image">
+          </div>
+          <input
+            #secondUploader
+            (change)="onFileSelect($event)"
+            accept="image/*"
+            id="secondFile"
+            style="display: none"
+            type="file">
+          <button
+            (click)="secondUploader.click()"
+            color="primary"
+            mat-raised-button
+          >Choose New
+          </button>
+          <button
+            (click)="updateUserPhoto(false)"
+            [disabled]="!bgFileToUpload"
+            color="primary"
+            mat-raised-button
+          >Upload New
+          </button>
+        </div>
+
       </div>
-      <input
-        style="display: none"
-        #secondUploader
-        type="file"
-        id="secondFile"
-        accept="image/*"
-        (change)="onFileSelect($event)">
-      <button
-        mat-raised-button
-        color="primary"
-        (click)="secondUploader.click()"
-      >Choose New</button>
-      <button
-        mat-raised-button
-        color="primary"
-        [disabled]="!bgFileToUpload"
-        (click)="updateUserPhoto(false)"
-      >Upload New</button>
-    </div>
+    </mat-tab>
 
-  </div>
-</mat-tab>
-
-<mat-tab label="About me">
-  <form [formGroup]="aboutAuthor" class="quill">
-    <quill-editor formControlName="aboutInfo"></quill-editor>
-    <button
-      class="saveAbout"
-      mat-raised-button
-      color="primary"
-      (click)="updateAboutUserInfo()"
-    >Save</button>
-  </form>
-</mat-tab>
-</mat-tab-group>
+    <mat-tab label="About me">
+      <form [formGroup]="aboutAuthor" class="quill">
+        <quill-editor formControlName="aboutInfo"></quill-editor>
+        <button
+          (click)="updateAboutUserInfo()"
+          class="saveAbout"
+          color="primary"
+          mat-raised-button
+        >Save
+        </button>
+      </form>
+    </mat-tab>
+  </mat-tab-group>
 </div>
 

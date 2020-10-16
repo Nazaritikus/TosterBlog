@@ -5,12 +5,13 @@ import {Directive, ElementRef, Input} from '@angular/core';
 })
 export class ValidationMessageDirective {
 
-  @Input() message: string
-  @Input() set appValidator(condition: boolean) {
-    condition ? this.element.nativeElement.innerText = this.message : this.element.nativeElement.innerText = ''
-  }
+  @Input() message: string;
 
   constructor(private element: ElementRef) {
+  }
+
+  @Input() set appValidator(condition: boolean) {
+    condition ? this.element.nativeElement.innerText = this.message : this.element.nativeElement.innerText = '';
   }
 
 }

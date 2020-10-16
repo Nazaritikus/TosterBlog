@@ -10,29 +10,30 @@ import {Subscription} from 'rxjs';
 })
 export class RandomNumberGeneratorComponent implements OnInit, OnDestroy {
 
-  number: number
-  text: string
+  number: number;
+  text: string;
 
-  numbersSub: Subscription
+  numbersSub: Subscription;
 
   constructor(
     private userServices: UserServices
-  ) { }
-
-  ngOnInit(): void {
-    this.getNumber()
+  ) {
   }
 
-  getNumber(){
+  ngOnInit(): void {
+    this.getNumber();
+  }
+
+  getNumber() {
     this.numbersSub = this.userServices.getNumbers().subscribe((resp: NumbersResp) => {
-      this.number = resp.number
-      this.text = resp.text
-    })
+      this.number = resp.number;
+      this.text = resp.text;
+    });
   }
 
   ngOnDestroy(): void {
-    if(this.numbersSub){
-      this.numbersSub.unsubscribe()
+    if (this.numbersSub) {
+      this.numbersSub.unsubscribe();
     }
   }
 }

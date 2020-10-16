@@ -1,1 +1,1 @@
-export * from './constData'
+export * from './constData';

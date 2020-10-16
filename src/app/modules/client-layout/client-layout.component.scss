@@ -1,15 +1,15 @@
-.main{
+.main {
   background: url("/assets/images/bg-light.jpg") center / cover no-repeat fixed;
   width: 100%;
   min-height: calc(100vh - 70px);
 
-  .userContainer{
+  .userContainer {
     max-width: 1200px;
     margin: 14px auto;
   }
 }
 
-.header{
+.header {
   display: flex;
   position: fixed;
   z-index: 2;
@@ -22,34 +22,35 @@
   align-items: center;
   padding: 0 20px;
   box-sizing: border-box;
-  box-shadow: 2px 2px 5px 0 rgba(0,0,0,0.3);
+  box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.3);
 
-  .logo{
+  .logo {
     max-height: 60px;
     margin-left: 90px;
   }
 
-  .userData{
+  .userData {
     display: flex;
     justify-content: space-around;
     align-items: center;
 
-    div{
+    div {
       margin-right: 8px;
     }
   }
 
-  .profile{
+  .profile {
     margin-bottom: 10px;
     margin-right: 10px;
-    .userProfile{
+
+    .userProfile {
       max-width: 50px;
       height: 50px;
       border-radius: 50%;
     }
   }
 
-  button{
+  button {
     font-size: 50px;
   }
 }
@@ -68,7 +69,7 @@
   width: 200px;
   background: rgba(255, 0, 0, 0.5);
 
-  .sideItem{
+  .sideItem {
     display: flex;
     align-items: center;
     text-decoration: none;
@@ -77,12 +78,12 @@
     margin: 25px 15px;
     font-size: 1rem;
 
-    span{
+    span {
       padding-right: 4px;
     }
   }
 
-  .active{
+  .active {
     color: #e3e3e3;
   }
 }

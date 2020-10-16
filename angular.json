@@ -127,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "avocado"
+  "defaultProject": "avocado",
+  "cli": {
+    "analytics": "f51b4a90-afd1-4bc8-aeef-14ba0361eac4"
+  }
 }

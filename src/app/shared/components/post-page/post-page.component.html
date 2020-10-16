@@ -1,10 +1,9 @@
-
 <div class="postHeader">
   <h1>{{post.title}}</h1>
   <button
     *ngIf="post.postOwner === current.name"
-    mat-icon-button
-    [matMenuTriggerFor]="menu">
+    [matMenuTriggerFor]="menu"
+    mat-icon-button>
     <mat-icon>more_vert</mat-icon>
   </button>
 </div>
@@ -12,16 +11,18 @@
 
 <mat-menu #menu="matMenu">
   <button
-    mat-menu-item
     (click)="editPost(post)"
+    mat-menu-item
   >
     <span class="material-icons menuItem">create</span>
-    Edit</button>
+    Edit
+  </button>
   <button
-    mat-menu-item
     (click)="deletePost(post.fbId)"
+    mat-menu-item
   >
-    <span class="material-icons">delete</span>Delete</button>
+    <span class="material-icons">delete</span>Delete
+  </button>
 </mat-menu>
 
 <quill-view-html [content]="post.body"></quill-view-html>

@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {QuillModule} from 'ngx-quill';
-import {AddEditPostModalComponent, DialogMessagesComponent, LoaderComponent, PostPageComponent} from '@shared/components';
+import {AddEditPostModalComponent, DialogMessagesComponent, PostPageComponent} from '@shared/components';
 import {HomePageAnimationDirective, UserCoverPhotoDirective, ValidationMessageDirective} from '@shared/directives';
 import {FilterPipe} from '@shared/pipes';
 import {CommonModule} from '@angular/common';
@@ -25,8 +25,10 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+// import {EarthLoaderComponent} from './components/earth-loader/earth-loader.component';
+// import {UnsavedEditsModalComponent} from './components/unsaved-edits-modal/unsaved-edits-modal.component';
+import {UnsavedEditModalComponent} from './components/unsaved-edit-modal/unsaved-edit-modal.component';
 import { EarthLoaderComponent } from './components/earth-loader/earth-loader.component';
-import { UnsavedEditsModalComponent } from './components/unsaved-edits-modal/unsaved-edits-modal.component';
 
 const MATERIAL_LIBS = [
   MatCardModule,
@@ -47,7 +49,7 @@ const MATERIAL_LIBS = [
   MatProgressSpinnerModule,
   MatExpansionModule,
   MatSliderModule
-]
+];
 
 @NgModule({
   imports: [
@@ -60,12 +62,12 @@ const MATERIAL_LIBS = [
           ['bold', 'italic', 'underline'],        // toggled buttons
           ['blockquote', 'code-block'],
 
-          [{'list': 'ordered'}, {'list': 'bullet'}],
+          [{list: 'ordered'}, {list: 'bullet'}],
 
-          [{'size': ['small', false, 'large', 'huge']}],  // custom dropdown
+          [{size: ['small', false, 'large', 'huge']}],  // custom dropdown
 
-          [{'color': []}],
-          [{'align': []}],
+          [{color: []}],
+          [{align: []}],
 
           ['link', 'image']                         // link and image, video
         ]
@@ -87,19 +89,14 @@ const MATERIAL_LIBS = [
   providers: [],
   declarations: [
     DialogMessagesComponent,
-    LoaderComponent,
     PostPageComponent,
-
     AddEditPostModalComponent,
-    EarthLoaderComponent,
     HomePageAnimationDirective,
     UserCoverPhotoDirective,
-
     ValidationMessageDirective,
-
     FilterPipe,
-
-    UnsavedEditsModalComponent
+    UnsavedEditModalComponent,
+    EarthLoaderComponent
   ]
 })
 export class SharedModule {

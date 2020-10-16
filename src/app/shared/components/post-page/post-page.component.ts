@@ -13,20 +13,23 @@ import {AddEditPostModalComponent} from '../../components/addEditPostModal/addEd
 })
 export class PostPageComponent implements OnInit {
 
-  @Input() post: Post
+  @Input() post: Post;
 
-  localId: string
-  current: BlogUser
+  localId: string;
+  current: BlogUser;
 
   constructor(
     private userServices: UserServices,
     public dialog: MatDialog
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
-    this.localId = localStorage.getItem('fb-user')
+    this.localId = localStorage.getItem('fb-user');
 
-    this.userServices.currentUser$.subscribe((data: BlogUser) => {this.current = data})
+    this.userServices.currentUser$.subscribe((data: BlogUser) => {
+      this.current = data;
+    });
   }
 
   editPost(post: Post) {
@@ -34,10 +37,10 @@ export class PostPageComponent implements OnInit {
       width: '700px',
       minHeight: '300px',
       data: post
-    })
+    });
   }
 
   deletePost(fbId: string) {
-    this.userServices.removePost(fbId, this.localId).subscribe()
+    this.userServices.removePost(fbId, this.localId).subscribe();
   }
 }

@@ -3,45 +3,46 @@
   min-height: calc(100vh - 80px);
   padding-top: 80px;
 
-  .loginBtn{
+  .loginBtn {
     margin: 50px;
   }
 
-  mat-horizontal-stepper{
-    background-color: rgba(222,222,222,0.5);
+  mat-horizontal-stepper {
+    background-color: rgba(222, 222, 222, 0.5);
     color: grey;
     max-width: 800px;
     margin: 0 auto;
 
-    ng-template{
+    ng-template {
       color: grey;
     }
-    .row{
+
+    .row {
       margin: 20px;
       display: flex;
       justify-content: space-around;
 
-      .emailField{
+      .emailField {
         align-self: center;
       }
     }
 
-    .verRow{
+    .verRow {
       display: flex;
       flex-direction: column;
       justify-content: space-around;
     }
 
-    .centerPosition{
+    .centerPosition {
       display: flex;
       justify-content: center;
     }
 
-    .formField{
+    .formField {
       min-width: 230px;
     }
 
-    .matchMessage{
+    .matchMessage {
       padding-left: 11px;
       margin-top: -18px;
     }

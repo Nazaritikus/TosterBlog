@@ -1,11 +1,11 @@
 
-.numbers{
+.numbers {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
 
-  .number{
+  .number {
     font-size: 2rem;
     font-weight: bold;
   }

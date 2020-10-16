@@ -1,4 +1,4 @@
-.page{
+.page {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -6,10 +6,11 @@
   left: 0;
 }
 
-.parallax{
+.parallax {
   position: relative;
   height: 65%;
-  .parallax__mountain{
+
+  .parallax__mountain {
     position: fixed;
     width: 100%;
     height: 100%;
@@ -17,21 +18,21 @@
     left: 0;
   }
 
-  .parallax__mountain_1{
+  .parallax__mountain_1 {
     background: url("/assets/images/m_1.png") center / cover no-repeat;
   }
 
-  .parallax__mountain_2{
+  .parallax__mountain_2 {
     z-index: 1;
     background: url("/assets/images/m_2.png") bottom right / 45% no-repeat;
   }
 
-  .parallax__mountain_3{
+  .parallax__mountain_3 {
     z-index: 1;
     background: url("/assets/images/m_3.png") left bottom / 100% no-repeat;
   }
 
-  .parallax__fog{
+  .parallax__fog {
     background: url("/assets/images/fog_1.png") bottom / 100% no-repeat;
     position: fixed;
     height: 100%;
@@ -42,11 +43,11 @@
   }
 }
 
-.container{
+.container {
   position: relative;
 }
 
-.welcomeMessage{
+.welcomeMessage {
   position: relative;
   color: grey;
   max-width: 60%;
@@ -55,7 +56,8 @@
   z-index: 2;
   text-align: center;
   font-size: 1.5rem;
-  h1{
+
+  h1 {
     font-size: 2.5rem;
     margin-bottom: 50px;
   }

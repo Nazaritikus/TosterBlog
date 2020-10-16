@@ -1,1 +1,1 @@
-export * from './filter.pipe'
+export * from './filter.pipe';

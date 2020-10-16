@@ -70,7 +70,7 @@ export class UserServices {
           return Object.keys(resp).map(localId => ({
             ...resp[localId][Object.keys(resp[localId]).toString()],
             fbId: Object.keys(resp[localId]).toString(),
-            localId: localId
+            localId
           }));
         }),
         catchError(this.handleError.bind(this))
@@ -147,7 +147,7 @@ export class UserServices {
   createNewPost(post: Post, localId: string) {
     return this.httpClient.post(`${environment.databaseURL}/Posts/${localId}.json`, post)
       .pipe(
-        tap(() => this.getUserPosts(localId).subscribe()), // TODO ask is it okay& better solution is to append new post to the myPost Subject
+        tap(() => this.getUserPosts(localId).subscribe()),
         catchError(this.handleError.bind(this))
       );
   }

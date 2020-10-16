@@ -1,54 +1,56 @@
-.contentBody{
+.contentBody {
   max-width: 400px;
   margin: 200px auto;
   text-align: center;
   color: grey;
   min-height: 500px;
 
-  mat-card{
-    background-color: rgba(222,222,222,0.5);
+  mat-card {
+    background-color: rgba(222, 222, 222, 0.5);
     color: grey;
 
-    .headerText{
+    .headerText {
       margin: 0 auto;
       text-transform: uppercase;
       font-size: 2rem;
-      img{
+
+      img {
         max-width: 90px;
         margin-bottom: 16px;
       }
     }
-    form{
+
+    form {
       display: flex;
       flex-direction: column;
 
-      mat-form-field{
+      mat-form-field {
         margin: 5px;
 
-        .iconPosition{
+        .iconPosition {
           position: absolute;
           top: 0;
           left: 0;
         }
 
-        .padLeft-2{
+        .padLeft-2 {
           padding-left: 30px;
           box-sizing: border-box;
         }
       }
 
-      .validation{
+      .validation {
         position: relative;
         color: red;
 
-        .fieldValidation{
+        .fieldValidation {
           position: absolute;
           top: -24px;
           left: 14px;
         }
       }
 
-      .signUp{
+      .signUp {
         margin-top: 20px;
       }
     }
